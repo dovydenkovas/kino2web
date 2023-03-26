@@ -27,6 +27,5 @@ cd Kino2Web
 python -m venv env
 . env/bin/activate
 pip install -r requirements.txt
-python Kino2Web
-
+python src/Kino2Web.py
 ```
