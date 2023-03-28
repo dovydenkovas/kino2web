@@ -1,5 +1,6 @@
 from utils import file_of_format, print_exeption
-
+import sys
+sys.path.append("src")
 
 def test_file_of_format():
     assert file_of_format("avi.mp4", {"mkv", "mp4"})
