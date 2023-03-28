@@ -1,7 +1,9 @@
 from functools import wraps
 from enum import Enum
 import traceback
+import os
 
+from PySide6.QtWidgets import QDialog, QDialogButtonBox, QVBoxLayout, QLabel
 
 class AudioType(Enum):
     FILE_AUDIO = [],
@@ -31,5 +33,20 @@ def print_exeption(func):
         except Exception as e:
             err_str = f'Ошибка в функции: {wrapper.__name__}\nПараметры: {args}, {kwargs})\nОшибка: {e}\nСтрока: {traceback.format_exc()}'
             print(err_str)
+            
+            if os.getenv("DEBUG") != "True":
+                dlg = QDialog()
+                dlg.setWindowTitle("Что-то пошло не так :(")
+                QBtn = QDialogButtonBox.Ok #| QDialogButtonBox.Cancel
+                buttonBox = QDialogButtonBox(QBtn)
+                buttonBox.accepted.connect(dlg.accept)
+
+                layout = QVBoxLayout()
+                message = QLabel("Ошибка сохранена в файл ERRORS.log\n" + err_str)
+                layout.addWidget(message)
+                layout.addWidget(buttonBox)
+                dlg.setLayout(layout)
+
+                dlg.exec_()
 
     return wrapper
