@@ -85,6 +85,9 @@ class VideoTicket(QGroupBox):
     def is_more_options(self) -> bool:
         return self.more_options.isChecked()
 
+    def is_empty(self) -> bool:
+        return not (self._input_path or self._output_path or self._audio_path)
+
     def set_input_path(self, path: str):
         if convertation.check_input_path(path):
             self._input_path = path

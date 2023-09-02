@@ -79,10 +79,12 @@ class MainWindow(QMainWindow):
 
     @print_exeption
     def remove_done_tickets(self, *args):
-        for ticket in self.tickets:
-            if ticket.is_done():
-                self.tickets.delete_ticket(ticket)
-
+        i = 0
+        while i < len(self.tickets):
+            if self.tickets[i].is_done() or self.tickets[i].is_empty():
+                self.tickets.delete_ticket(self.tickets[i])
+                continue
+            i += 1
     @print_exeption
     def reset_all_tickets(self, *args):
         for ticket in self.tickets:
