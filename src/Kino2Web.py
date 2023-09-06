@@ -70,7 +70,7 @@ class MainWindow(QMainWindow):
         grid.addWidget(self.reset_done_tickets_btn, 3, 1, 1, 1)
         grid.addWidget(self.add_ticket_btn, 3, 2, 1, 2)
         self.setCentralWidget(wgt)
-        self.setWindowTitle("Kino2Web converter")
+        self.setWindowTitle("Kino2Web converter v1.2.1")
         self.resize(800, 400)
 
     def add_ticket(self):
